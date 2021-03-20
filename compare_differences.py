@@ -46,18 +46,15 @@ print(wind_actual)
 combined_renewables = wind_actual + solar_actual
 predicted_renewables = wind_pred[0:96] + solar_pred[0:96]
 
+prices = pd.DataFrame({'da_price': da_price, 
+                       'predicted_da_price': predicted_da_price,
+                       'wind_pred': wind_pred, 
+                       'wind_actual': wind_actual, 
+                       'solar_pred': solar_pred, 
+                       'solar_actual': da_price, 
+                       'combined_renewables': combined_renewables, 
+                       'predicted_renewables': predicted_renewables})
 
-### PLOTTING
-fig, ax = plt.subplots(2,1)
+prices.to_csv('data/volue_data.csv')  
 
-ax[0].plot(combined_renewables, label="actual renewable energy")
-ax[0].plot(predicted_renewables, label="predicted renewable energy")
-ax[0].legend(loc='upper right')
-ax[0].set_ylabel("MWH")
-
-ax[1].plot(da_price, label="actual price")
-#ax[1].plot(predicted_da_price, label="predicted price")
-ax[1].legend(loc='upper right')
-ax[1].set_ylabel("€/MWH")
-
-plt.show()
+print("Data loaded successfully")
