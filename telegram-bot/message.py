@@ -23,7 +23,7 @@ def start(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text="I'm a bot, please talk to me!")
 
 def market(update, context):
-    context.bot.send_message(chat_id=update.effective_chat.id, text="The market looks good! Diamond Hands! 💎💎💎 ")
+    context.bot.send_message(chat_id=update.effective_chat.id, text="The market is volatile today. I realized strong fluctuations and price prediction and actual prize spread more and more.")
 
 def gamestop(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text= str(round(get_current_price('GME'), 2)) + ' $')
