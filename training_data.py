@@ -20,10 +20,9 @@ df = pd.DataFrame(columns = ["wind_pred", "wind_actual", "solar_pred", "solar_ac
 # PREDICRION
 curve = session.get_curve(name='pro de wnd ec00 mwh/h cet min15 f')
 ts = curve.search_instances(issue_date_from=start_date, issue_date_to=end_date, with_data=True)
-wind_pred = ts[0].to_pandas()
+wind_pred = ts[9].to_pandas()
 print(wind_pred.shape)
 df["wind_pred"] = wind_pred
-
 
 # ACTUAL
 curve = session.get_curve(name='pro de wnd mwh/h cet min15 a')
@@ -32,11 +31,12 @@ wind_actual = ts.to_pandas()
 print(wind_actual.shape)
 df["wind_actual"] = wind_actual
 
+
 ### SOLAR
 # PREDICITION
 curve = session.get_curve(name='pro de spv ec00 mwh/h cet min15 f')
 ts = curve.search_instances(issue_date_from=start_date, issue_date_to=end_date, with_data=True)
-solar_pred = ts[0].to_pandas()
+solar_pred = ts[9].to_pandas()
 print(solar_pred.shape)
 df["solar_pred"] = solar_pred
 
@@ -60,7 +60,9 @@ df["price_intraday"] = interpolated
 print(interpolated.shape)
 
 print(df)
-df.to_csv('data/volue_data.csv')  
+#df.to_csv('C:/Users/Micha/Desktop/volue_data.csv') 
+df.to_csv('data/volue_data.csv')
+
 
 """
 ### PLOTTING
