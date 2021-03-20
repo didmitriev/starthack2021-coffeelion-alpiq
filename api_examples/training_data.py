@@ -14,7 +14,7 @@ end_date = pd.Timestamp(year=2021, month=3, day=14, hour=0, minute=00, tz='CET')
 ############################
 
 # create a dataframe for all variables
-df = pd.DataFrame(columns = ["price_intraday", "prod_difference"])
+df = pd.DataFrame(columns = ["price_intraday", "wind_pred", "wind_actual", "solar_pred", "solar_actual"])
 
 ### Get intraday prices
 curve = session.get_curve(name='pri de intraday vwap id1 €/mwh cet h a') # which curve to get
@@ -27,29 +27,34 @@ df["price_intraday"] = intraday_price
 # PREDICRION
 curve = session.get_curve(name='pro de wnd ec00 mwh/h cet min15 f')
 ts = curve.search_instances(issue_date_from=start_date, issue_date_to=end_date, with_data=True)
-wind_pred = np.repeat(np.asarray(ts), 4)
+wind_pred = ts[0].to_pandas()
+df["wind_pred"] = wind_pred
+
 
 # ACTUAL
 curve = session.get_curve(name='pro de wnd mwh/h cet min15 a')
 ts = curve.get_data(data_from=start_date, data_to=end_date)
 wind_actual = ts.to_pandas() 
-print(wind_actual.shape)
+df["wind_actual"] = wind_actual
 
 ### SOLAR
 # PREDICITION
 curve = session.get_curve(name='pro de spv ec00 mwh/h cet min15 f')
 ts = curve.search_instances(issue_date_from=start_date, issue_date_to=end_date, with_data=True)
-solar_pred = np.repeat(np.asarray(ts), 4)
-print(type(solar_pred))
+solar_pred = ts[0].to_pandas()
+df["solar_pred"] = solar_pred
+
 # ACTUAL
 curve = session.get_curve(name='pro de spv mwh/h cet min15 a')
 ts = curve.get_data(data_from=start_date, data_to=end_date)
 solar_actual = ts.to_pandas()
+df["solar_actual"] = solar_actual
 
 
 print(df)
+df.to_csv('data/volue_data.csv')  
 
-
+"""
 ### PLOTTING
 fig, ax = plt.subplots(2,1)
 
@@ -61,4 +66,4 @@ ax[0].set_ylabel("MWH")
 ax[1].plot(intraday_price, label="intraday price")
 ax[1].legend(loc='lower left')
 ax[1].set_ylabel("€/MWH")
-plt.show()
+plt.show() """
