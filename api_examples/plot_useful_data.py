@@ -40,7 +40,6 @@ solar_pred = ts.to_pandas()[0:96]
 curve = session.get_curve(name='pro de spv mwh/h cet min15 a')
 ts = curve.get_data(data_from=start_date)
 solar_actual = ts.to_pandas()
-print(wind_actual)
 
 combined_renewables = wind_actual + solar_actual
 predicted_renewables = wind_pred + solar_pred
