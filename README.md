@@ -1,6 +1,3 @@
-# starthack2021-coffeelion-alpiq
-
-
 ## We collect the data from different sources:
 - Volue
 - Wattsight
@@ -15,3 +12,13 @@ The Telegram Bot could send helpful information, for example the broker can ask,
 
 # Team
 Dmitrii, Micha, Max, Markus
+
+## How to run
+
+Uses https://github.com/unit8co/darts
+
+# Environment preparation:
+
+use conda/virtual env
+
+install keras, pytorch, tensorflow, fbprophet *BEFORE* darts
