@@ -8,8 +8,8 @@ session = wapi.Session(client_id='9-k2UK_O.nj6dzxl1gpSfhwJUbxI7mv8', client_secr
 
 # set the date to start from 0:00 this day
 #start_date = pd.Timestamp.now().floor('D')
-start_date = pd.Timestamp(year=2021, month=3, day=13, hour=0, minute=00, tz='CET')
-end_date = pd.Timestamp(year=2021, month=3, day=14, hour=0, minute=00, tz='CET')
+start_date = pd.Timestamp(year=2021, month=3, day=1, hour=0, minute=00, tz='CET')
+end_date = pd.Timestamp(year=2021, month=3, day=11, hour=0, minute=00, tz='CET')
 
 ############################
 
@@ -20,7 +20,7 @@ df = pd.DataFrame(columns = ["wind_pred", "wind_actual", "solar_pred", "solar_ac
 # PREDICRION
 curve = session.get_curve(name='pro de wnd ec00 mwh/h cet min15 f')
 ts = curve.search_instances(issue_date_from=start_date, issue_date_to=end_date, with_data=True)
-wind_pred = ts[0].to_pandas()[0:96]
+wind_pred = ts[0].to_pandas()
 print(wind_pred.shape)
 df["wind_pred"] = wind_pred
 
@@ -36,7 +36,7 @@ df["wind_actual"] = wind_actual
 # PREDICITION
 curve = session.get_curve(name='pro de spv ec00 mwh/h cet min15 f')
 ts = curve.search_instances(issue_date_from=start_date, issue_date_to=end_date, with_data=True)
-solar_pred = ts[0].to_pandas()[0:96]
+solar_pred = ts[0].to_pandas()
 print(solar_pred.shape)
 df["solar_pred"] = solar_pred
 
