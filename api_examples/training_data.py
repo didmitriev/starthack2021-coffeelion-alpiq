@@ -9,7 +9,7 @@ session = wapi.Session(client_id='9-k2UK_O.nj6dzxl1gpSfhwJUbxI7mv8', client_secr
 # set the date to start from 0:00 this day
 #start_date = pd.Timestamp.now().floor('D')
 start_date = pd.Timestamp(year=2021, month=3, day=13, hour=0, minute=00, tz='CET')
-end_date = pd.Timestamp(year=2021, month=3, day=15, hour=0, minute=00, tz='CET')
+end_date = pd.Timestamp(year=2021, month=3, day=14, hour=0, minute=00, tz='CET')
 
 ############################
 
@@ -53,7 +53,7 @@ print(df)
 ### PLOTTING
 fig, ax = plt.subplots(2,1)
 
-ax[0].plot(difference, label="difference (produced - predicted)")
+ax[0].plot(solar_actual, label="difference (produced - predicted)")
 ax[0].legend(loc='lower left')
 ax[0].axhline(0, color="black")
 ax[0].set_ylabel("MWH")
