@@ -1,6 +1,5 @@
-## We collect the data from different sources:
-- Volue
-- Wattsight
+## We collect the data from:
+- Volue 
 
 
 ## Telegram Bot
